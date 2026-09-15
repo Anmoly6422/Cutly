@@ -5,17 +5,19 @@ dns.setServers(["8.8.8.8", "1.1.1.1"]);
 require("dotenv").config();
 
 const express = require("express");
+const cors = require("cors");
 const { connectToMongoDB } = require("./connect");
 const urlRoute = require("./routes/url");
 const URL = require("./models/url");
 
 const app = express();
-const PORT = 8001;
+const PORT = process.env.PORT || 8001;
 
 connectToMongoDB(process.env.MONGODB_URI)
     .then(() => console.log("MongoDB connected"))
     .catch((err) => console.log("MongoDB connection error:", err));
 
+app.use(cors());
 app.use(express.json());
 
 app.use("/url", urlRoute);
@@ -40,7 +42,12 @@ app.get("/:shortId", async (req, res) => {
         });
     }
 
-    return res.redirect(entry.redirectURL);
+    let targetUrl = entry.redirectURL;
+    if (!/^https?:\/\//i.test(targetUrl)) {
+        targetUrl = `https://${targetUrl}`;
+    }
+
+    return res.redirect(targetUrl);
 });
 
 app.listen(PORT, () => {
