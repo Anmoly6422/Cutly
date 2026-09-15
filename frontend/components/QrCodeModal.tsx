@@ -20,8 +20,8 @@ export default function QrCodeModal({ isOpen, onClose, shortUrl }: QrCodeModalPr
         width: 300,
         margin: 2,
         color: {
-          dark: "#090A0F",
-          light: "#FFFFFF",
+          dark: "#20241F",
+          light: "#F4F0E6",
         },
       })
         .then((url) => setDataUrl(url))
@@ -42,45 +42,43 @@ export default function QrCodeModal({ isOpen, onClose, shortUrl }: QrCodeModalPr
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 10 }}
-            className="relative w-full max-w-sm rounded-2xl border border-white/10 bg-[#12131A] p-6 shadow-2xl"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            className="relative w-full max-w-sm rounded-[8px] border border-[#8FA396]/30 bg-[#16221B] p-6 shadow-xl"
           >
-            {/* Close Button */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors"
+              className="absolute top-4 right-4 text-[#8FA396] hover:text-[#F4F0E6] transition-colors"
             >
               <X className="h-5 w-5" />
             </button>
 
             <div className="flex flex-col items-center text-center">
-              <div className="h-10 w-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mb-3">
-                <QrCode className="h-5 w-5 text-emerald-400" />
+              <div className="h-9 w-9 rounded-[6px] bg-[#1B2B22] border border-[#8FA396]/20 flex items-center justify-center mb-3 text-[#8FA396]">
+                <QrCode className="h-4 w-4" />
               </div>
 
-              <h3 className="text-lg font-bold text-white">QR Code</h3>
-              <p className="text-xs text-slate-400 mt-1 truncate max-w-xs">{shortUrl}</p>
+              <h3 className="text-base font-medium text-[#F4F0E6]">QR code</h3>
+              <p className="text-xs font-mono text-[#8FA396] mt-1 truncate max-w-xs">{shortUrl}</p>
 
-              {/* QR Image */}
-              <div className="mt-5 rounded-xl border border-white/10 bg-white p-3 shadow-inner">
+              {/* QR Image on --paper background */}
+              <div className="mt-5 rounded-[6px] bg-[#F4F0E6] p-3">
                 {dataUrl ? (
-                  <img src={dataUrl} alt="Short URL QR Code" className="h-48 w-48 object-contain" />
+                  <img src={dataUrl} alt="Short URL QR Code" className="h-44 w-44 object-contain" />
                 ) : (
-                  <div className="h-48 w-48 animate-pulse bg-slate-200 rounded-lg" />
+                  <div className="h-44 w-44 animate-pulse bg-[#B4B2A9]/20 rounded" />
                 )}
               </div>
 
-              {/* Action */}
               <button
                 onClick={handleDownload}
-                className="mt-6 w-full h-11 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-[#090A0F] font-bold text-sm transition-all flex items-center justify-center gap-2 active:scale-98"
+                className="mt-6 w-full h-10 rounded-[8px] bg-[#E8B84B] hover:bg-[#D9A93C] text-[#20241F] font-semibold text-xs transition-all flex items-center justify-center gap-2"
               >
-                <Download className="h-4 w-4" />
-                Download QR Image
+                <Download className="h-3.5 w-3.5" />
+                Download QR image
               </button>
             </div>
           </motion.div>

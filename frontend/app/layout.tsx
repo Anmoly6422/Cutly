@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Cutly — Premium URL Shortener & Analytics",
-  description: "Turn long URLs into clean, trackable short links. Fast, secure, and beautiful.",
+  title: "Cutly — Precision URL Shortener",
+  description: "Turn long URLs into clean, shareable links. No account. No clutter. Just Cutly.",
 };
 
 export default function RootLayout({
@@ -25,9 +25,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} dark h-full antialiased selection:bg-[#10B981] selection:text-[#090A0F]`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased selection:bg-[#E8B84B] selection:text-[#20241F]`}
     >
-      <body className="min-h-full flex flex-col bg-[#090A0F] text-white font-sans antialiased">
+      <body className="min-h-full flex flex-col bg-[#1B2B22] text-[#F4F0E6] font-sans antialiased">
         {children}
       </body>
     </html>

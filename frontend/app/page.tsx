@@ -14,7 +14,6 @@ const STORAGE_KEY = "cutly_link_history_v1";
 export default function Home() {
   const [history, setHistory] = useState<LinkHistoryItem[]>([]);
 
-  // Load history from localStorage on mount
   useEffect(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
@@ -26,10 +25,8 @@ export default function Home() {
     }
   }, []);
 
-  // Save link to history
   function handleLinkCreated(newItem: LinkHistoryItem) {
     setHistory((prev) => {
-      // Filter out duplicate IDs if any
       const filtered = prev.filter((item) => item.id !== newItem.id);
       const updated = [newItem, ...filtered];
       try {
@@ -41,7 +38,6 @@ export default function Home() {
     });
   }
 
-  // Remove single item
   function handleRemoveItem(id: string) {
     setHistory((prev) => {
       const updated = prev.filter((item) => item.id !== id);
@@ -54,7 +50,6 @@ export default function Home() {
     });
   }
 
-  // Clear all history
   function handleClearHistory() {
     setHistory([]);
     try {
@@ -65,29 +60,30 @@ export default function Home() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#090A0F] text-white selection:bg-emerald-500 selection:text-[#090A0F]">
-      {/* Background ambient lighting */}
-      <div className="fixed inset-0 bg-radial-glow pointer-events-none z-0" />
-      <div className="fixed inset-0 bg-grid-pattern opacity-20 pointer-events-none z-0" />
-
+    <div className="flex min-h-screen flex-col bg-[#1B2B22] text-[#F4F0E6] selection:bg-[#E8B84B] selection:text-[#20241F]">
       <div className="relative z-10 flex min-h-screen flex-col">
         {/* Navbar */}
         <Navbar historyCount={history.length} />
 
         {/* Main Content */}
         <main className="flex-1">
+          {/* Hero Section: --bg-base with cutting mat grid */}
           <Hero />
 
+          {/* Shortener Card */}
           <UrlShortener onLinkCreated={handleLinkCreated} />
 
+          {/* History Drawer */}
           <RecentLinks
             history={history}
             onClearHistory={handleClearHistory}
             onRemoveItem={handleRemoveItem}
           />
 
+          {/* Process Section: --bg-lift background */}
           <HowItWorks />
 
+          {/* Features Section: --bg-base background */}
           <Statement />
         </main>
 

@@ -6,52 +6,48 @@ import { Zap, ShieldCheck, QrCode, BarChart3 } from "lucide-react";
 const features = [
   {
     icon: Zap,
-    title: "Instant Redirection",
-    desc: "Optimized Node.js & Express routing delivers instant link redirection.",
+    title: "Instant redirection",
+    desc: "Optimized server routing delivers fast, reliable link redirection.",
   },
   {
     icon: BarChart3,
-    title: "Click Analytics",
-    desc: "Track total clicks and timestamp log history for every short URL created.",
+    title: "Click analytics",
+    desc: "Track total clicks and timestamp visit logs for every short link.",
   },
   {
     icon: QrCode,
-    title: "QR Code Generator",
-    desc: "Generate and download custom high-res QR codes with a single click.",
+    title: "QR code generator",
+    desc: "Generate and download custom high-resolution QR codes instantly.",
   },
   {
     icon: ShieldCheck,
-    title: "Zero Sign-up Friction",
-    desc: "Shorten URLs immediately without creating accounts or passwords.",
+    title: "No signup required",
+    desc: "Shorten URLs immediately without creating accounts or entering emails.",
   },
 ];
 
 export default function Statement() {
   return (
-    <section id="features" className="py-14 sm:py-24 px-4 sm:px-6 border-t border-white/10 bg-[#12131A]">
+    <section id="features" className="py-14 sm:py-20 px-4 sm:px-6 border-t border-[rgba(127,168,140,0.2)] bg-[#1B2B22]">
       <div className="mx-auto max-w-5xl">
-        {/* Statement Header */}
+        {/* Header in sentence case and weight 500 */}
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="text-center md:text-left mb-12 sm:mb-16"
+          transition={{ duration: 0.5 }}
+          className="text-center md:text-left mb-12 sm:mb-14"
         >
-          <span className="text-xs font-semibold uppercase tracking-widest text-emerald-400">
-            Engineered for Simplicity
+          <span className="text-xs font-normal text-[#8FA396]">
+            Engineered for simplicity
           </span>
-          <div className="mt-3 text-3xl sm:text-6xl font-black text-white tracking-tight uppercase leading-[1.05]">
-            No noise. <br />
-            No mandatory login. <br />
-            <span className="glow-emerald-gradient">
-              Just fast short links<span className="text-emerald-400">.</span>
-            </span>
-          </div>
+          <h2 className="mt-1 text-2xl sm:text-4xl font-medium tracking-tight text-[#F4F0E6] leading-tight">
+            No account. No complexity. No noise. Just short links.
+          </h2>
         </motion.div>
 
-        {/* Feature Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Feature 4-up grid WITHOUT card background boxes */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((item, idx) => {
             const Icon = item.icon;
             return (
@@ -61,19 +57,17 @@ export default function Statement() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="rounded-2xl border border-white/10 bg-[#181A24] p-6 flex flex-col justify-between hover:border-emerald-500/30 transition-colors"
+                className="flex flex-col"
               >
-                <div>
-                  <div className="h-10 w-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mb-4 text-emerald-400">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <h3 className="font-bold text-white text-base mb-1.5">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    {item.desc}
-                  </p>
+                <div className="h-8 w-8 rounded-[6px] bg-[#16221B] border border-[#8FA396]/20 flex items-center justify-center mb-3 text-[#8FA396]">
+                  <Icon className="h-4 w-4" />
                 </div>
+                <h3 className="font-medium text-[#F4F0E6] text-sm sm:text-base mb-1">
+                  {item.title}
+                </h3>
+                <p className="text-xs text-[#8FA396] leading-relaxed font-normal">
+                  {item.desc}
+                </p>
               </motion.div>
             );
           })}
